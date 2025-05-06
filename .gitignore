@@ -1,0 +1,86 @@
+## .gitignore для C# (.NET 6) и ASP.NET Core Web API
+
+# Стандартные папки сборки
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+artifacts/
+bld/
+
+# Результаты публикации
+publish/
+out/
+
+# Конфигурации
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Ww][Ii][Nn]32/
+
+# Visual Studio user-specific
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code settings
+.history/
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+
+# Rider (если кто-то откроет проект в JetBrains Rider)
+.idea/
+
+# ASP.NET Core специфическое
+ScaffoldingReadMe.txt
+
+# Конфигурации в процессе разработки
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Логи и кэш
+*.log
+*.tlog
+*.cache
+*.ds_store
+*.pidb
+
+# Тестовые результаты
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.coverage
+*.coveragexml
+*.trx
+TestResult.xml
+*.VisualState.xml
+nunit-*.xml
+
+# NuGet пакеты (если случайно попадут)
+*.nupkg
+*.snupkg
+*.symbols.nupkg
+
+# Бинарные логи MSBuild
+*.binlog
+
+# Файлы резервных копий
+*~
+~$*
+
+# Автоматически генерируемые файлы проекта (старые форматы)
+project.lock.json
+project.fragment.lock.json
+
+# IDE специфические
+*.orig
+*.sdf
+*.sln.ide
+*.userprefs
