@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace tasks_csProject.StringWorker
 {
+    /// <summary>
+    /// Обработчик строк по различным правилам
+    /// </summary>
     public class StringHandler
     {
         public StringHandler() { }
 
+        /// <summary>
+        /// Обработка строки по правилу чётной и нечётной длинны
+        /// </summary>
+        /// <param name="str">Исходная строка</param>
+        /// <returns>Обработанная по правилам строка</returns>
         public string ProcessString(string str)
         {
             string result = "";
@@ -30,6 +38,11 @@ namespace tasks_csProject.StringWorker
             return result;
         }
 
+        /// <summary>
+        /// Переворачивание строки
+        /// </summary>
+        /// <param name="str">Исходная строка</param>
+        /// <returns>Перевёрнутая строка</returns>
         private string ReverseString(string str)
         {
             char[] arr = str.ToCharArray();

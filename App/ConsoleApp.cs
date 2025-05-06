@@ -7,10 +7,16 @@ using tasks_csProject.StringWorker;
 
 namespace tasks_csProject.App
 {
+    /// <summary>
+    /// Консольный вариант приложения
+    /// </summary>
     public class ConsoleApp : Application
     {
         private readonly StringHandler _stringHandler = new StringHandler();
 
+        /// <summary>
+        /// Логика всего приложения
+        /// </summary>
         public override void RunApp()
         {
             Console.WriteLine("Добро пожаловать в обработчик строк");
