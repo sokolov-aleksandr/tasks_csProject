@@ -35,7 +35,12 @@ namespace tasks_csProject.App
 
                 var processStr = _stringHandler.ProcessString(str);
 
-                Console.WriteLine($"Обработанная строка: {processStr}\n");
+                var titleMetod = (str.Length % 2 == 0)
+                    ? "Строка чётной длины: переворачиваем половинки."
+                    : "Строка НЕчётной длины: переворачиваем строку и добавляем её к оригиналу.";
+
+                Console.WriteLine($"\n{titleMetod}" +
+                    $"\nОбработанная строка: {processStr}\n");
             }
         }
     }
