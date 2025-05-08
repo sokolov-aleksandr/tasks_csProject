@@ -14,6 +14,38 @@ namespace tasks_csProject.StringWorker
         public StringHandler() { }
 
         /// <summary>
+        /// Проверка строки на корректность, согласно условиям.
+        /// Все символы должны быть на английском и содержать только буквы в нижнем регистре.
+        /// </summary>
+        /// <param name="str">Строка для проверки</param>
+        /// <param name="errorChars">Список ошибочных символов, выявленных при проверке</param>
+        /// <returns>Результат проверки строки: правильная или нет</returns>
+        public bool CheckString(string str, out List<char> errorChars)
+        {
+            errorChars = new List<char>();
+            bool isCorrect = true;
+
+            foreach (char c in str)
+            {
+                // Проверка: если символ не в диапазоне a-z
+                if (c < 'a' || c > 'z')
+                {
+                    if (!errorChars.Contains(c))
+                    {
+                        errorChars.Add(c);
+                    }
+                }
+            }
+
+            if (errorChars.Count > 0)
+            {
+                isCorrect = false;
+            }
+
+            return isCorrect;
+        }
+        
+        /// <summary>
         /// Обработка строки по правилу чётной и нечётной длинны
         /// </summary>
         /// <param name="str">Исходная строка</param>
