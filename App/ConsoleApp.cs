@@ -61,15 +61,13 @@ namespace tasks_csProject.App
         /// <returns>Результат проверки</returns>
         private bool ValidateInput(string str)
         {
-            List<char> errorChars = new List<char>();
-            
             if (string.IsNullOrWhiteSpace(str))
             {
                 Console.WriteLine("Строка не может быть пустой!");
                 return false;
             }
 
-            if (!_stringHandler.CheckString(str, out errorChars))
+            if (!_stringHandler.CheckString(str, out List<char> errorChars))
             {
                 Console.WriteLine($"В вводе содержатся ошибки: некорректны эти символы: {string.Join(" ", errorChars)}");
                 Console.WriteLine("Обрабатываются ТОЛЬКО строки с Английскими символами в НИЖНЕМ регистре!");
@@ -89,6 +87,12 @@ namespace tasks_csProject.App
 
             Console.WriteLine($"\n{titleMetod}" +
                 $"\nОбработанная строка: {processStr}\n");
+
+            Console.WriteLine("Количество повторений символов в обработанной строке: ");
+            foreach ((char chr, int count) in _stringHandler.GetNumOfDuplicateChar(processStr))
+            {
+                Console.WriteLine($"    {chr} - {count} раз");
+            }
         }
     }
 }
