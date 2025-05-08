@@ -71,6 +71,30 @@ namespace tasks_csProject.StringWorker
         }
 
         /// <summary>
+        /// Получение количества повторений символа в строке
+        /// </summary>
+        /// <param name="str">Строка для нахождения количества</param>
+        /// <returns>Словарь, где ключ - символ, а значение - его количество повторений в строке</returns>
+        public Dictionary<char, int> GetNumOfDuplicateChar(string str)
+        {
+            Dictionary<char, int> keyValuePairs = new Dictionary<char, int>();
+
+            foreach (char c in str)
+            {
+                if (keyValuePairs.ContainsKey(c))
+                {
+                    keyValuePairs[c] += 1;
+                }
+                else
+                {
+                    keyValuePairs.Add(c, 1);
+                }
+            }
+
+            return keyValuePairs;
+        }
+
+        /// <summary>
         /// Переворачивание строки
         /// </summary>
         /// <param name="str">Исходная строка</param>
