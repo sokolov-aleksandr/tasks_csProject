@@ -20,11 +20,12 @@ namespace tasks_csProject.App
         public override void RunApp()
         {
             Console.WriteLine("Добро пожаловать в обработчик строк");
+            Console.WriteLine("Обрабатываются ТОЛЬКО строки с Английскими символами в НИЖНЕМ регистре!");
             Console.WriteLine("Для выхода введите \"exit\"\n");
 
             while (true)
             {
-                Console.Write("Введите строку для обработки: ");
+                Console.Write("\nВведите строку для обработки: ");
 
                 string str = Console.ReadLine();
 
@@ -33,6 +34,14 @@ namespace tasks_csProject.App
                     Console.WriteLine("Строка не может быть пустой!");
                     continue;
                 }
+
+                if (!_stringHandler.CheckString(str, out List<char> errorChars))
+                {
+                    Console.WriteLine($"В вводе содержатся ошибки: некорректны эти символы: {string.Join(" ", errorChars)}");
+                    Console.WriteLine("Обрабатываются ТОЛЬКО строки с Английскими символами в НИЖНЕМ регистре!");
+                    continue;
+                }
+
                 if (str.Trim().ToLower() == "exit")
                 {
                     Console.WriteLine("\nВыход из программы...");
