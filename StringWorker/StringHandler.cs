@@ -20,9 +20,9 @@ namespace tasks_csProject.StringWorker
         /// <param name="str">Строка для проверки</param>
         /// <param name="errorChars">Список ошибочных символов, выявленных при проверке</param>
         /// <returns>Результат проверки строки: правильная или нет</returns>
-        public bool CheckString(string str, out List<char> errorChars)
+        public bool CheckString(string str, out HashSet<char> errorChars)
         {
-            errorChars = new List<char>();
+            errorChars = new HashSet<char>();
             bool isCorrect = true;
 
             foreach (char c in str)
@@ -30,10 +30,7 @@ namespace tasks_csProject.StringWorker
                 // Проверка: если символ не в диапазоне a-z
                 if (c < 'a' || c > 'z')
                 {
-                    if (!errorChars.Contains(c))
-                    {
-                        errorChars.Add(c);
-                    }
+                    errorChars.Add(c);
                 }
             }
 
@@ -92,6 +89,41 @@ namespace tasks_csProject.StringWorker
             }
 
             return keyValuePairs;
+        }
+
+        /// <summary>
+        /// Нахождение подстроки, которая начинается и заканчивается на англ гласную букву
+        /// </summary>
+        /// <param name="str">Строка для проверки</param>
+        /// <returns>Подстрока, которая начинается и заканчивается на англ гласную</returns>
+        public string FindLongestVowelSubstring(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            var vowels = new HashSet<char> { 'a', 'e', 'i', 'o', 'u', 'y' };
+            int maxLeght = 0;
+            int? startIndex = null;
+            string result = string.Empty;
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (vowels.Contains(str[i]))
+                {
+                    if (startIndex.HasValue)
+                    {
+                        int leght = i - startIndex.Value + 1;
+                        if (leght > maxLeght)
+                        {
+                            maxLeght = leght;
+                            result = str.Substring(startIndex.Value, leght);
+                        }
+                    }
+                    startIndex = i;
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
