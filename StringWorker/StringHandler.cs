@@ -92,6 +92,41 @@ namespace tasks_csProject.StringWorker
         }
 
         /// <summary>
+        /// Нахождение подстроки, которая начинается и заканчивается на англ гласную букву
+        /// </summary>
+        /// <param name="str">Строка для проверки</param>
+        /// <returns>Подстрока, которая начинается и заканчивается на англ гласную</returns>
+        public string FindLongestVowelSubstring(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            var vowels = new HashSet<char> { 'a', 'e', 'i', 'o', 'u', 'y' };
+            int maxLeght = 0;
+            int? startIndex = null;
+            string result = string.Empty;
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (vowels.Contains(str[i]))
+                {
+                    if (startIndex.HasValue)
+                    {
+                        int leght = i - startIndex.Value + 1;
+                        if (leght > maxLeght)
+                        {
+                            maxLeght = leght;
+                            result = str.Substring(startIndex.Value, leght);
+                        }
+                    }
+                    startIndex = i;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Переворачивание строки
         /// </summary>
         /// <param name="str">Исходная строка</param>
