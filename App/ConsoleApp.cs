@@ -67,7 +67,7 @@ namespace tasks_csProject.App
                 return false;
             }
 
-            if (!_stringHandler.CheckString(str, out List<char> errorChars))
+            if (!_stringHandler.CheckString(str, out HashSet<char> errorChars))
             {
                 Console.WriteLine($"В вводе содержатся ошибки: некорректны эти символы: {string.Join(" ", errorChars)}");
                 Console.WriteLine("Обрабатываются ТОЛЬКО строки с Английскими символами в НИЖНЕМ регистре!");
