@@ -27,6 +27,7 @@ namespace tasks_csProject.App
                 Console.Write("\nВведите строку для обработки: ");
                 string str = Console.ReadLine();
 
+
                 if (ShoudExit(str))
                 {
                     Console.WriteLine("\nВыход из программы...");
@@ -38,7 +39,10 @@ namespace tasks_csProject.App
                     continue;
                 }
 
-                ShowResult(str);
+
+                SortType sortType = SelectSortType();
+
+                ShowResult(str, sortType);
             }
         }
 
@@ -47,6 +51,31 @@ namespace tasks_csProject.App
             Console.WriteLine("Добро пожаловать в обработчик строк");
             Console.WriteLine("Обрабатываются ТОЛЬКО строки с Английскими символами в НИЖНЕМ регистре!");
             Console.WriteLine("Для выхода введите \"exit\"\n");
+        }
+
+        private SortType SelectSortType()
+        {
+            Console.WriteLine("\n Выберите способ сортировки строки:");
+            Console.WriteLine("1 - Быстрая сортировка");
+            Console.WriteLine("2 - Сортировка двоичным деревом (TreeSort)");
+            
+            while (true)
+            {
+                Console.WriteLine("Выбор: ");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        return SortType.QuickSort;
+                    case "2":
+                        return SortType.TreeSort;
+                    default:
+                        Console.WriteLine("Неверный выбор, введите заново!\n");
+                        break;
+                }
+            }
         }
 
         private bool ShoudExit(string input)
@@ -77,8 +106,10 @@ namespace tasks_csProject.App
             return true;
         }
 
-        private void ShowResult(string str)
+        private void ShowResult(string str, SortType sortType)
         {
+            Console.WriteLine();
+
             // Обрабатываем строку
             var processStr = _stringHandler.ProcessString(str);
 
@@ -89,7 +120,9 @@ namespace tasks_csProject.App
 
             // Вывод обработанной строки
             Console.WriteLine($"\n{titleMetod}" +
-                $"\nОбработанная строка: {processStr}\n");
+                $"\nОбработанная строка:    {processStr}");
+            // Вывод ОТСОРТИРОВАННОЙ обработанной строки
+            Console.WriteLine($"Отсортированная строка: {StringSorter.SortByEnumType(processStr, sortType)}\n");
 
             // Вывод подстроки с гласными
             var vowelSubStr = _stringHandler.FindLongestVowelSubstring(processStr);
