@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using tasks_csProject.RandomNum;
 using tasks_csProject.StringWorker;
 
 namespace tasks_csProject.App
@@ -18,7 +19,7 @@ namespace tasks_csProject.App
         /// <summary>
         /// Логика всего приложения
         /// </summary>
-        public override void RunApp()
+        public override async Task RunApp()
         {
             ShowWelcomeMessage();
 
@@ -42,7 +43,7 @@ namespace tasks_csProject.App
 
                 SortType sortType = SelectSortType();
 
-                ShowResult(str, sortType);
+                await ShowResult(str, sortType);
             }
         }
 
@@ -106,7 +107,18 @@ namespace tasks_csProject.App
             return true;
         }
 
-        private void ShowResult(string str, SortType sortType)
+        private async Task<string> RemoveRandomLetter(string str)
+        {
+            int index = await RandomNumProvider.GetIntAsync(0, str.Length - 1);
+
+            string result = str.Remove(index, 1);
+
+            Console.WriteLine($"\nИндекс удалённого символа: {index}");
+
+            return result;
+        }
+
+        private async Task ShowResult(string str, SortType sortType)
         {
             Console.WriteLine();
 
@@ -142,6 +154,9 @@ namespace tasks_csProject.App
             {
                 Console.WriteLine($"    {chr} - {count} раз");
             }
+
+            string result = await RemoveRandomLetter(processStr);
+            Console.WriteLine($"Строка без рандомного символа: {result}");
         }
     }
 }
