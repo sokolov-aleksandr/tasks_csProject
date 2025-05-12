@@ -12,9 +12,9 @@ namespace tasks_csProject
         // Запускаем консольный вариант приложения
         private static ConsoleApp _app = new ConsoleApp();
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            _app.RunApp();
+            await _app.RunApp();
         }
     }
 }

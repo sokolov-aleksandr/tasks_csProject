@@ -11,6 +11,6 @@ namespace tasks_csProject.App
     /// </summary>
     public abstract class Application
     {
-        public abstract void RunApp();
+        public abstract Task RunApp();
     }
 }
