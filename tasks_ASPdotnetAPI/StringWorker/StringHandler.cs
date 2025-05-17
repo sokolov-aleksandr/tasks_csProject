@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tasks_csProject.StringWorker
+namespace tasks_csProject.tasks_consoleApp.StringWorker
 {
     /// <summary>
     /// Обработчик строк по различным правилам
@@ -41,7 +41,7 @@ namespace tasks_csProject.StringWorker
 
             return isCorrect;
         }
-        
+
         /// <summary>
         /// Обработка строки по правилу чётной и нечётной длинны
         /// </summary>
@@ -50,7 +50,7 @@ namespace tasks_csProject.StringWorker
         public string ProcessString(string str)
         {
             string result = "";
-            
+
             // Если чётная длинна
             if (str.Length % 2 == 0)
             {
