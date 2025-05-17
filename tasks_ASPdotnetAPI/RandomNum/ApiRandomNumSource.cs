@@ -12,10 +12,10 @@ namespace tasks_csProject.tasks_consoleApp.RandomNum
         /// <param name="max">Максимальное возможное число</param>
         /// <returns>Рандомный int</returns>
         /// <exception cref="Exception">API вернул пустой ответ</exception>
-        public static async Task<int> GetInt(int min, int max)
+        public static async Task<int> GetInt(int min, int max, string apiUrl)
         {
             using HttpClient client = new HttpClient();
-            string url = CreateUrlFromData(min, max);
+            string url = CreateUrlFromData(apiUrl, min, max);
 
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
@@ -29,11 +29,11 @@ namespace tasks_csProject.tasks_consoleApp.RandomNum
             return result[0];
         }
 
-        private static string CreateUrlFromData(int min, int max)
+        private static string CreateUrlFromData(string apiUrl, int min, int max)
         {
             string url = string.Empty;
 
-            url += "http://www.randomnumberapi.com/api/v1.0/random?"
+            url += $"{apiUrl}?"
                 + $"min={min}&max={max}&count=1";
 
             return url;

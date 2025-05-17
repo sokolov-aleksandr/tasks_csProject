@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using tasks_ASPdotnetAPI.Settings;
 using tasks_csProject.tasks_consoleApp.RandomNum;
 using tasks_csProject.tasks_consoleApp.StringWorker;
 
@@ -10,6 +12,16 @@ namespace tasks_ASPdotnetAPI.Controllers
     public class StringProcessingController : Controller
     {
         private readonly StringHandler _stringHandler = new StringHandler();
+        private readonly string _randomApi;
+        private readonly List<string> _blackList;
+
+        public StringProcessingController(
+            IOptions<RandomApiSettings> randomApiSettings,
+            IOptions<BlackListSettings> blackListSettings)
+        {
+            _randomApi = randomApiSettings.Value.RandomApi;
+            _blackList = blackListSettings.Value.BlackList;
+        }
 
         /// <summary>
         /// Обработка входной строки, сортировка, 
@@ -34,9 +46,14 @@ namespace tasks_ASPdotnetAPI.Controllers
                 return BadRequest($"Некорректные символы: {string.Join(", ", errorChars)}. Допустимы только символы англ. алфавита в нижнем регистре");
             }
 
+            if (_blackList.Any(word => input.Contains(word)))
+            {
+                return BadRequest($"Строка содержит запрещённые слова: {string.Join(", ", _blackList.Where(input.Contains))}");
+            }
+
             // Обработка строки
             string processed = _stringHandler.ProcessString(input);
-            string sorted = StringSorter.SortByEnumType(input, sortType);
+            string sorted = StringSorter.SortByEnumType(processed, sortType);
             string vowels = _stringHandler.FindLongestVowelSubstring(processed);
             var charRepeats = _stringHandler.GetNumOfDuplicateChar(processed)
                 .ToDictionary(x =>  x.Key, x => x.Value);
@@ -56,7 +73,7 @@ namespace tasks_ASPdotnetAPI.Controllers
 
         private async Task<string> RemoveRandomLetter(string str)
         {
-            int index = await RandomNumProvider.GetIntAsync(0, str.Length - 1);
+            int index = await RandomNumProvider.GetIntAsync(0, str.Length - 1, _randomApi);
             return str.Remove(index, 1);
         }
     }
