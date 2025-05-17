@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tasks_csProject.App
+namespace tasks_csProject.tasks_consoleApp.App
 {
     /// <summary>
     /// Набор методов, который должен быть у всех видов приложений

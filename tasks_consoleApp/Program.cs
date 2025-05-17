@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using tasks_csProject.App;
+using tasks_csProject.tasks_consoleApp.App;
 
-namespace tasks_csProject
+namespace tasks_csProject.tasks_consoleApp
 {
     internal class Program
     {

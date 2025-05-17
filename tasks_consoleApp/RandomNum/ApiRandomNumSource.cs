@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Text.Json;
 
-namespace tasks_csProject.RandomNum
+namespace tasks_csProject.tasks_consoleApp.RandomNum
 {
     public static class ApiRandomNumSource
     {

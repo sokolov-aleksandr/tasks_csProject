@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="tasks_ASPdotnetAPI\**" />
+    <EmbeddedResource Remove="tasks_ASPdotnetAPI\**" />
+    <None Remove="tasks_ASPdotnetAPI\**" />
+  </ItemGroup>
+
 </Project>

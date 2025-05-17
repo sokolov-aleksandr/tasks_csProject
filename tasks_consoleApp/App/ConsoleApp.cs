@@ -4,10 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using tasks_csProject.RandomNum;
-using tasks_csProject.StringWorker;
+using tasks_csProject.tasks_consoleApp.RandomNum;
+using tasks_csProject.tasks_consoleApp.StringWorker;
 
-namespace tasks_csProject.App
+namespace tasks_csProject.tasks_consoleApp.App
 {
     /// <summary>
     /// Консольный вариант приложения
@@ -59,7 +59,7 @@ namespace tasks_csProject.App
             Console.WriteLine("\n Выберите способ сортировки строки:");
             Console.WriteLine("1 - Быстрая сортировка");
             Console.WriteLine("2 - Сортировка двоичным деревом (TreeSort)");
-            
+
             while (true)
             {
                 Console.WriteLine("Выбор: ");
@@ -126,7 +126,7 @@ namespace tasks_csProject.App
             var processStr = _stringHandler.ProcessString(str);
 
             // Правила используемые при обработке
-            var titleMetod = (str.Length % 2 == 0)
+            var titleMetod = str.Length % 2 == 0
                 ? "Строка чётной длины: переворачиваем половинки."
                 : "Строка НЕчётной длины: переворачиваем строку и добавляем её к оригиналу.";
 

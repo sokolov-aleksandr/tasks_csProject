@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tasks_csProject.RandomNum
+namespace tasks_csProject.tasks_consoleApp.RandomNum
 {
     /// <summary>
     /// Получение рандомного числа различными способами
