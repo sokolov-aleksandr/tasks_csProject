@@ -11,7 +11,17 @@ namespace tasks_ASPdotnetAPI.Controllers
     {
         private readonly StringHandler _stringHandler = new StringHandler();
 
+        /// <summary>
+        /// Обработка входной строки, сортировка, 
+        /// поиск последовательности с гласными, 
+        /// счёт повторов и удаление случайного символа
+        /// </summary>
+        /// <param name="input">Строка со строчными буквами англ. алфавита</param>
+        /// <param name="sortType">Тип сортировки. 0 - Быстрая сортировка. 1 - Сортировка деревом. </param>
+        /// <returns>JSON с результатами обработки</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)] // Успешный ответ
+        [ProducesResponseType(StatusCodes.Status400BadRequest)] // Строка некорректна
         public async Task<IActionResult> ProcessString([FromQuery] string input, [FromQuery] SortType sortType)
         {
             if (string.IsNullOrWhiteSpace(input))
