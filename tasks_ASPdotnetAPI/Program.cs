@@ -4,13 +4,17 @@ using tasks_ASPdotnetAPI.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Регистрируем 
-builder.Services.Configure<RandomApiSettings>(
-    builder.Configuration);
+// Регистрируем конфигурации
+builder.Services.Configure<RandomApiSettings>(builder.Configuration);
+builder.Services.Configure<JsonSettings>(builder.Configuration.GetSection("Settings"));
 
-builder.Services.Configure<BlackListSettings>(
-    builder.Configuration.GetSection("Settings"));
+// Получаем экземпляр JsonSettings для использования значения ParallelLimit
+var jsonSettings = builder.Configuration
+    .GetSection("Settings")
+    .Get<JsonSettings>();
 
+// Регистрируем RequestLimiterService с лимитом
+builder.Services.AddSingleton(new RequestLimiterService(jsonSettings.ParallelLimit));
 
 // Add services to the container.
 
