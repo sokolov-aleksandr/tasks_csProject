@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="tasks_ASPdotnetAPI.Tests\**" />
     <Compile Remove="tasks_ASPdotnetAPI\**" />
+    <EmbeddedResource Remove="tasks_ASPdotnetAPI.Tests\**" />
     <EmbeddedResource Remove="tasks_ASPdotnetAPI\**" />
+    <None Remove="tasks_ASPdotnetAPI.Tests\**" />
     <None Remove="tasks_ASPdotnetAPI\**" />
   </ItemGroup>
 
